@@ -1,0 +1,45 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: test-job
+spec:
+  template:
+    spec:
+      restartPolicy: Never
+      containers:
+        - name: container1
+          image: gcr.io/project1/testapp1:NONE
+          command: ["/bin/bash", "-c"]
+          args:
+            - |
+              sleep 1;
+        - name: container2
+          image: gcr.io/project1/test/testapp2:NONE
+          command: ["/bin/bash", "-c"]
+          args:
+            - |
+              sleep 1;
+        - name: container3
+          image: gcr.io/project1/testapp3:1.2.3
+          command: ["/bin/bash", "-c"]
+          args:
+            - |
+              sleep 1;
+        - name: container4
+          image: gcr.io/project1/test/testapp4:1.2.3
+          command: ["/bin/bash", "-c"]
+          args:
+            - |
+              sleep 1;
+        - name: cloudsql-proxy
+          image: gcr.io/project1/gce-proxy:1.17.0
+          command: ["/bin/bash", "-c"]
+          args:
+            - |
+             sleep 10;
+        - name: mongo
+          image: mongo:4.2.8
+          command: ["/bin/bash", "-c"]
+          args:
+            - |
+             sleep 10;
